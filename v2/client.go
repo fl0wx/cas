@@ -309,6 +309,9 @@ func (c *Client) getCookie(w http.ResponseWriter, r *http.Request) *http.Cookie 
 			Secure:   c.cookie.Secure,
 			SameSite: c.cookie.SameSite,
 		}
+		if c.cookie.Domain != "" {
+			cookie.Domain = c.cookie.Domain
+		}
 
 		if glog.V(2) {
 			glog.Infof("Setting %v cookie with value: %v", cookie.Name, cookie.Value)
